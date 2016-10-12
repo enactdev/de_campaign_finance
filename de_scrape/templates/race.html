@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+
+{% import 'macros_layout.html' as layout_macros %}
+
+
+{% block left_side_bar %}{{ layout_macros.left_side_bar(race.slug)}}{% endblock %}
+
+{% block content %}
+
+    <div id="main">
+        <div class="header">
+            <h1>Delaware Elections, 2016</h1>
+            <h2>A project of Delaware Agenda.</h2>
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">{{ race.race_name }}</h2>
+            <p>
+                {{ race.race_description }}
+            </p>
+
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                    <h3 class="content-subhead">Democrats:</h3>
+                    <ul>
+                {% for candidate in dem_candidates %}
+                        <li><a href="{{ url_for('candidate', race_slug=race.slug, candidate_slug=candidate.slug) }}">{{ candidate.full_name() }}</a></li>
+                {% endfor %}
+                    </ul>
+                </div>
+                <div class="pure-u-1-2">
+                    <h3 class="content-subhead">Republicans:</h3>
+                    <ul>
+                {% for candidate in rep_candidates %}
+                        <li><a href="{{ url_for('candidate', race_slug=race.slug, candidate_slug=candidate.slug) }}">{{ candidate.full_name() }}</a></li>
+                {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+
+<!--
+            <div class="pure-g">
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg" alt="Train">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg" alt="T-Shirt Store">
+                </div>
+                <div class="pure-u-1-4">
+                    <img class="pure-img-responsive" src="http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg" alt="Mountain">
+                </div>
+            </div>
+
+        </div>
+
+-->
+
+    </div> <!-- /main -->
+
+
+{% endblock %}

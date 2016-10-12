@@ -1,0 +1,38 @@
+
+
+
+{% macro left_side_bar(selected) -%}
+
+    <div id="menu">
+        <div class="pure-menu">
+            <a class="pure-menu-heading" href="#">DE 2016</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><hr /></li>
+
+                <li class="pure-menu-item{% if selected=='governor' %} menu-item-divided pure-menu-selected{% endif %}">
+                    <a href="{{ url_for('race', slug='governor') }}" class="pure-menu-link">Governor</a>
+                </li>
+                <li class="pure-menu-item{% if selected=='lt-governor' %} menu-item-divided pure-menu-selected{% endif %}">
+                    <a href="{{ url_for('race', slug='lt-governor') }}" class="pure-menu-link">Lt. Governor</a>
+                </li>
+                <li class="pure-menu-item{% if selected=='us-rep' %} menu-item-divided pure-menu-selected{% endif %}">
+                    <a href="{{ url_for('race', slug='us-rep') }}" class="pure-menu-link">U.S. Rep</a>
+                </li>
+                <li class="pure-menu-item{% if selected=='mayor-wilm' %} menu-item-divided pure-menu-selected{% endif %}">
+                    <a href="{{ url_for('race', slug='mayor-wilm') }}" class="pure-menu-link">Wilm. Mayor</a>
+                </li>
+
+                <!--
+                <li class="pure-menu-item menu-item-divided pure-menu-selected">
+                    <a href="#" class="pure-menu-link">Services</a>
+                </li>
+
+-->
+                <li class="pure-menu-item"><hr /></li>
+                <li class="pure-menu-item{% if selected=='contact' %} menu-item-divided pure-menu-selected{% endif %}"><a href="{{ url_for('contact') }}" class="pure-menu-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+{%- endmacro %}

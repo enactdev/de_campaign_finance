@@ -1,0 +1,54 @@
+# coding: utf-8
+from sqlalchemy import Column, Integer, String, text
+from sqlalchemy.ext.declarative import declarative_base
+
+
+Base = declarative_base()
+metadata = Base.metadata
+
+
+class Candidate(Base):
+    __tablename__ = 'candidate'
+
+    id = Column(Integer, primary_key=True)
+    race_id = Column(Integer, nullable=False)
+    party_id = Column(Integer, nullable=False)
+    name_first = Column(String(16), nullable=False)
+    name_middle = Column(String(16), nullable=False)
+    name_last = Column(String(16), nullable=False)
+    name_suffix = Column(String(8), nullable=False)
+    website = Column(String(128), nullable=False)
+
+
+class Party(Base):
+    __tablename__ = 'party'
+
+    id = Column(Integer, primary_key=True)
+    party_name = Column(String(32), nullable=False)
+
+
+class Race(Base):
+    __tablename__ = 'race'
+
+    id = Column(Integer, primary_key=True)
+    state_id = Column(Integer, nullable=False)
+    race_name = Column(String(64), nullable=False)
+    is_statewide = Column(Integer, nullable=False, server_default=text("'0'"))
+    area = Column(String(32), nullable=False)
+
+
+class SocialMediaAccount(Base):
+    __tablename__ = 'social_media_accounts'
+
+    id = Column(Integer, primary_key=True)
+    social_media_site_id = Column(Integer, nullable=False)
+    candidate_id = Column(Integer, nullable=False)
+    account_url = Column(String(128), nullable=False)
+
+
+class SocialMediaSite(Base):
+    __tablename__ = 'social_media_sites'
+
+    id = Column(Integer, primary_key=True)
+    social_name = Column(String(32), nullable=False)
+    base_url = Column(String(64), nullable=False)

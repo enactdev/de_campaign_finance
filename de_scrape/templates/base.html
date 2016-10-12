@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Delaware 2016 election races.">
+
+    <title>Responsive Side Menu &ndash; Layout Examples &ndash; Pure</title>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/pure/side-menu-old-ie.css') }}">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/pure/side-menu.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/pure/main.css') }}">
+    <!--<![endif]-->
+  
+
+
+</head>
+<body>
+
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+
+{% block left_side_bar %}{% endblock %}
+
+
+{% block content %}{% endblock %}
+
+
+    <div class="footer">
+        <div class="legal pure-g">
+
+            <div class="pure-u-1 u-sm-1-2">
+                <p class="legal-license">
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                </p>
+            </div>
+
+            <div class="pure-u-1 u-sm-1-2">
+                <ul class="legal-links">
+                    <li><a href="http://enactdev.com/">Created by Enact Development</a></li>
+                    <li><a href="http://enactdev.com/">Maintained by Delaware Agenda</a></li>
+
+                </ul>
+
+                <p class="legal-copyright">&copy; 2015 Delaware Agenda. All rights reserved.</p>
+            </div>
+
+        </div>
+    </div>
+ 
+
+
+</div>
+
+
+
+
+
+<script src="{{ url_for('static', filename='js/pure-ui.js') }}"></script>
+
+
+</body>
+</html>
