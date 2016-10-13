@@ -12,10 +12,12 @@ class Config(object):
     #SECURITY_LOGIN_URL = '/students/login'
     #SECURITY_URL_PREFIX = '/students'
 
+    CONTRIBUTION_CSV_DIRECTORY = '/path/to/csv/files'
+
     # Flask-Security config
     SECURITY_URL_PREFIX = "/admin"
     SECURITY_PASSWORD_HASH = "pbkdf2_sha512"
-    SECURITY_PASSWORD_SALT = "EGDFGSDFDAEWhewuiajklfGOJAEGj"
+    SECURITY_PASSWORD_SALT = "This-is-not-a-good-salt"
 
     # Flask-Security URLs, overridden because they don't put a / at the end
     #SECURITY_LOGIN_URL = "/login/"
@@ -33,26 +35,10 @@ class Config(object):
 
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
-    AUTHORIZE_NET_LOGIN = '2E3jsfH7L5F'
-    AUTHORIZE_NET_KEY = '979cxZC5g8dDRf9b'
-    AUTHORIZE_NET_DEBUG = True
-
     PROPAGATE_EXCEPTIONS = True
 
     SQLALCHEMY_DATABASE_URI = 'mysql://de_user:de_pass@localhost/de_scrape?charset=utf8&use_unicode=1';
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
-
-    # Flask-Mail
-    MAIL_SERVER = 'localhost'
-    MAIL_PORT = 25
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = False
-    MAIL_USERNAME = None
-    MAIL_PASSWORD = None
-    MAIL_DEFAULT_SENDER = "Mitty <noreply@mitty.com>" #'noreply@mitty.com' => 'Mitty'
-    MAIL_MAX_EMAILS = None
-    MAIL_SUPPRESS_SEND = True
-
 
 
 class LocalConfig(Config):
