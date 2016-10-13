@@ -12,6 +12,7 @@ class Config(object):
     #SECURITY_LOGIN_URL = '/students/login'
     #SECURITY_URL_PREFIX = '/students'
 
+    # Include trailing slash for directory
     CONTRIBUTION_CSV_DIRECTORY = '/path/to/csv/files'
 
     # Flask-Security config

@@ -280,6 +280,7 @@ def check_de_filed_candidates_general():
 
 
 
+# This can be run post-primary election to flag those made it to the general
 @manager.command
 def flag_de_general_candidates():
 
@@ -333,7 +334,7 @@ ORDER BY count(*)  DESC
     
     """
 
-    file_location = '/home/chris/projects/de_scrape/site/de_delinquent_tax_payers.txt'
+    file_location = app.config['CONTRIBUTION_CSV_DIRECTORY']+'de_delinquent_tax_payers.txt'
 
     fhand = open(file_location)
 
@@ -461,39 +462,6 @@ def replace_with_road_abbreviations(address):
 
 
 
-@manager.command
-def store_census_last_names_csv():
-
-
-    file_location = '/home/chris/data/app_c.csv'
-
-    csvfile = open(file_location, 'r')
-
-    csvreader = csv.reader(csvfile)
-
-    row = next(csvreader)   # skip the first line
-
-    for row in csvreader:
-
-        census_last_name = CensusLastNames()
-
-        census_last_name.last_name = row[0]
-        census_last_name.rank = row[1]
-        census_last_name.count = row[2]
-        census_last_name.prop100k = row[3]
-        census_last_name.cum_prop100k = row[4]
-        census_last_name.pctwhite = row[5] if row[5] != '(S)' else 0
-        census_last_name.pctblack = row[6] if row[6] != '(S)' else 0
-        census_last_name.pctapi = row[7] if row[7] != '(S)' else 0
-        census_last_name.pctaian = row[8] if row[8] != '(S)' else 0
-        census_last_name.pct2prace = row[9] if row[9] != '(S)' else 0
-        census_last_name.pcthispanic = row[10] if row[10] != '(S)' else 0
-
-        db.session.add(census_last_name)
-
-    db.session.commit()
-
-
 
 @manager.command
 def store_all_campaign_contributions_csv():
@@ -503,10 +471,15 @@ def store_all_campaign_contributions_csv():
 
 
 
+
+
+
+
+
 @manager.command
 def testing_us_address_library():
 
-    file_location = '/home/chris/projects/de_scrape/site/de_contributions/DE_Contributions_2015_partial.csv'
+    file_location = app.config['CONTRIBUTION_CSV_DIRECTORY']+'DE_Contributions_2015_partial.csv'
 
     line = 0
 
@@ -596,8 +569,8 @@ FixedAsset
 
     
 
-    #file_location = '/home/chris/projects/de_scrape/site/de_contributions/DE_Contributions_'+str(year)+'.csv'
-    file_location = '/home/chris/projects/de_scrape/site/de_contributions/DE_Contributions_2015_partial.csv'
+    #file_location = app.config['CONTRIBUTION_CSV_DIRECTORY']+'DE_Contributions_'+str(year)+'.csv'
+    file_location = app.config['CONTRIBUTION_CSV_DIRECTORY']+'DE_Contributions_2015_partial.csv'
 
     total_contributed = 0
 
@@ -1232,104 +1205,6 @@ FixedAsset
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@manager.command
-def store_campaign_contribution_csv():
-    """
-    Call this function to store single source contributions
-
-    Check out Healy Long
-
-    """
-
-    file_location = '/home/chris/projects/de_scrape/site/John_Carney_Governor_Campaign_Donations_Prelim.csv'
-
-    first_row = True
-
-    total_aggregate = 0
-    total_received = 0
-
-    amount_list = list('1234567890.$,')
-
-    line = 0
-
-    with open(file_location, 'r') as csvfile:
-
-        line = line + 1
-
-        spamreader = csv.reader(csvfile)
-
-        for row in spamreader:
-            
-            #print len(row)
-
-            for i in range(len(row)):
-                row[i] = row[i].strip()
-
-            # Look for weird characters in amounts
-            aggregate_list = list(row[3])
-            received_list = list(row[4])
-
-            extra_chars = [c for c in aggregate_list if c not in amount_list] 
-
-            #print len(extra_chars)
-
-            if len(extra_chars):
-                print 'ERROR: extra chars:', ''.join(extra_chars)
-
-            # remove '$' and ',' from donation amounts
-            row[3] = ''.join(re.findall('([0-9\.])', row[3]))
-            row[4] = ''.join(re.findall('([0-9\.])', row[4]))
-
-            #print ', '.join(row)
-
-            if row[0] != '' and float(row[3]) != float(row[4]):
-                print 'difference in amounts on line',line,'for', row[1], ':', row[3], row[4]
-
-
-            if row[0] == '' and not first_row:
-                #print 'combinging rows'
-                for i in range(len(row)):
-                    previous_row[i] = previous_row[i] + ' ' + row[i]
-
-            if not first_row and previous_row[0] != '':
-
-                #print ', '.join(previous_row)
-
-                total_aggregate = total_aggregate + float(previous_row[3])
-                total_received = total_aggregate + float(previous_row[4])
-
-                # Store row
-
-            previous_row = row
-            first_row = False
-
-    # Store last row
-    if row[0] == '':
-
-        process_campaign_contribution_row(row)
-
-        total_aggregate = total_aggregate + float(row[3])
-        total_received = total_aggregate + float(row[4])
-
-
-
-    print 'total aggregate:', total_aggregate
-    print 'total received:', total_received
 
 
 if __name__ == "__main__":

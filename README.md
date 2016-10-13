@@ -2,7 +2,18 @@
 Looking at campaign finance data from the state of Delaware
 
 
-Download the data from:
+# Basic guide to git:
+http://rogerdudler.github.io/git-guide/
+
+
+To use this code:
+
+copy config_example.py to config.py
+
+Edit CONTRIBUTION_CSV_DIRECTORY to point to where you will store the CSV files. For privacy reasons, this git will not host the CSV files with users campaign contribution data.
+
+
+Download campagin contribution data from:
 
 https://cfrs.elections.delaware.gov
 
