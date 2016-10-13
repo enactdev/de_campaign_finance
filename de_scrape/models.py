@@ -121,24 +121,6 @@ class DelinquentTaxpayer(db.Model):
 
 
 
-class CensusLastNames(db.Model):
-    __tablename__ = 'census_last_names'
-
-    id = Column(Integer, primary_key=True)
-    last_name = Column(String(128), nullable=False)
-    rank = Column(Integer, nullable=False, server_default='0')
-    count = Column(Integer, nullable=False, server_default='0')
-    prop100k = Column(Numeric(10, 2), nullable=False, server_default='0')
-    cum_prop100k = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pctwhite = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pctblack = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pctapi = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pctaian = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pct2prace = Column(Numeric(10, 2), nullable=False, server_default='0')
-    pcthispanic = Column(Numeric(10, 2), nullable=False, server_default='0')
-
-
-
 
 class State(db.Model):
     __tablename__ = 'states'
@@ -203,5 +185,17 @@ class CandidateFiling(db.Model):
         return "<CandidateFiling(full_name='%s')>" % (self.full_name)
 
 
+class TestUsAddressCleaner(db.Model):
+    __tablename__ = 'test_us_address_cleaner'
+
+    id = Column(Integer, primary_key=True)
+    AddressNumber = Column(String(128), server_default=text(""), nullable=False)
+    StreetNamePreDirectional = Column(String(128), server_default=text(""), nullable=False)
+
+    StreetName = Column(String(128), server_default=text(""), nullable=False)
+    StreetNamePostType = Column(String(128), server_default=text(""), nullable=False)
+    PlaceName = Column(String(128), server_default=text(""), nullable=False)
+    StateName = Column(String(128), server_default=text(""), nullable=False)
+    ZipCode = Column(String(128), server_default=text(""), nullable=False)
 
 

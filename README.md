@@ -13,6 +13,12 @@ copy config_example.py to config.py
 Edit CONTRIBUTION_CSV_DIRECTORY to point to where you will store the CSV files. For privacy reasons, this git will not host the CSV files with users campaign contribution data.
 
 
+Load the database from de_scrape.sql, and edit your config.py to point to it
+
+Load state data from states.sql
+
+
+
 Download campagin contribution data from:
 
 https://cfrs.elections.delaware.gov

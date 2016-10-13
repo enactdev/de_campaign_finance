@@ -472,8 +472,12 @@ def store_all_campaign_contributions_csv():
 
 
 
+state_replacement_dict = {s.state: s.abbreviation for s in State.query}
+
+street_type_replacement_dict = {'Lane': 'Ln', 'Road': 'Rd', 'Street': 'St', 'Avenue': 'Ave', 'Drive': 'Dr'}
 
 
+street_direction_replacement_dict = {'North': 'N', 'South': 'S', 'East': 'E', 'West': 'W'}
 
 
 @manager.command
@@ -527,8 +531,41 @@ def testing_us_address_library():
 
         address_type = usaddress_address[1]
 
+        # Make sure we're using state abbreviation instead of full state name
+        if 'StateName' in address_dict and address_dict['StateName'] in state_replacement_dict:
+            address_dict['StateName'] = state_replacement_dict[address_dict['StateName']]
+
+
+        # Use standard abbreviated for street type (Rd instead of Road), and remove trailing '.' from any abbreviations
+        if 'StreetNamePostType' in address_dict:
+            if address_dict['StreetNamePostType'] in street_type_replacement_dict:
+                address_dict['StreetNamePostType'] = street_type_replacement_dict[address_dict['StreetNamePostType']]
+
+            address_dict['StreetNamePostType'] = address_dict['StreetNamePostType'].strip('.')
+
+
+        # Use standard abbreviated for street direction (N instead of North), and remove trailing '.' from any abbreviations
+        if 'StreetNamePreDirectional' in address_dict:
+            if address_dict['StreetNamePreDirectional'] in street_direction_replacement_dict:
+                address_dict['StreetNamePreDirectional'] = street_direction_replacement_dict[address_dict['StreetNamePreDirectional']]
+
+            address_dict['StreetNamePreDirectional'] = address_dict['StreetNamePreDirectional'].strip('.')
+
+
+
+
+        # Remove trailing '-' from zipcode
+        address_dict['ZipCode'] = address_dict['ZipCode'].strip('-')
+
+
+
+
+
         print 'usaddress addy dict:', address_dict
 
+        test_addy = TestUsAddressCleaner(**address_dict)
+
+        db.session.add(test_addy)        
 
 
         if 'AddressNumber' not in address_dict:
@@ -539,6 +576,9 @@ def testing_us_address_library():
 
             else:
                 print 'ERROR: Bad address:', row[2]
+
+    db.session.commit()
+
 
 
 

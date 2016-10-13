@@ -174,11 +174,6 @@ class DeElectionDBCache:
 
     def load_cache(self):
 
-        self.census_last_names = {}
-        census_last_names = CensusLastNames.query.filter(CensusLastNames.count > 5000)
-        for c in census_last_names:
-            index = c.last_name.upper()
-            self.census_last_names[index] = c.id
 
         self.state_abbrs = {}
         state_abbrs = State.query
