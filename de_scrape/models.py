@@ -185,17 +185,313 @@ class CandidateFiling(db.Model):
         return "<CandidateFiling(full_name='%s')>" % (self.full_name)
 
 
+class TestProbablePeopleCleaner(db.Model):
+    __tablename__ = 'test_probable_people_cleaner'
+
+    id = Column(Integer, primary_key=True)
+
+    name_type = Column(String(128), server_default=text(""), nullable=False)
+
+    original_name  = Column(Text, server_default=text(""), nullable=False)
+
+
+
+    PrefixMarital = Column(String(128), server_default=text(""), nullable=False)
+    PrefixOther = Column(String(128), server_default=text(""), nullable=False)
+
+    Nickname = Column(String(128), server_default=text(""), nullable=False)
+    AKA = Column(String(128), server_default=text(""), nullable=False)
+
+
+    FirstInitial = Column(String(128), server_default=text(""), nullable=False)
+    GivenName = Column(String(128), server_default=text(""), nullable=False)
+    MiddleInitial = Column(String(128), server_default=text(""), nullable=False)
+    MiddleName = Column(String(128), server_default=text(""), nullable=False)
+
+    LastInitial = Column(String(128), server_default=text(""), nullable=False)
+    Surname = Column(String(128), server_default=text(""), nullable=False)
+    SuffixGenerational = Column(String(128), server_default=text(""), nullable=False)
+
+    SuffixOther = Column(String(128), server_default=text(""), nullable=False)
+
+
+    And = Column(String(128), server_default=text(""), nullable=False)
+    SecondPrefixMarital = Column(String(128), server_default=text(""), nullable=False)
+    SecondPrefixOther = Column(String(128), server_default=text(""), nullable=False)
+
+    SecondNickname = Column(String(128), server_default=text(""), nullable=False)
+    SecondFirstInitial = Column(String(128), server_default=text(""), nullable=False)
+
+
+    SecondGivenName = Column(String(128), server_default=text(""), nullable=False)
+    SecondMiddleInitial = Column(String(128), server_default=text(""), nullable=False)
+    SecondMiddleName = Column(String(128), server_default=text(""), nullable=False)
+
+    SecondLastInitial = Column(String(128), server_default=text(""), nullable=False)
+    SecondSurname = Column(String(128), server_default=text(""), nullable=False)
+
+    SecondSuffixGenerational = Column(String(128), server_default=text(""), nullable=False)
+    SecondSuffixOther = Column(String(128), server_default=text(""), nullable=False)
+
+
+    CorporationName = Column(String(128), server_default=text(""), nullable=False)
+
+    ShortForm = Column(String(128), server_default=text(""), nullable=False)
+    OtherShortForm = Column(String(128), server_default=text(""), nullable=False)
+
+
+    ProxyFor = Column(String(128), server_default=text(""), nullable=False)
+    ProxiedCorporationNameBranchType = Column(String(128), server_default=text(""), nullable=False)
+
+
+
+    OtherCorporationName = Column(String(128), server_default=text(""), nullable=False)
+
+
+    CorporationNameAndCompany = Column(String(128), server_default=text(""), nullable=False)
+
+    CorporationNameOrganization = Column(String(128), server_default=text(""), nullable=False)
+    CorporationNameBranchIdentifier = Column(String(128), server_default=text(""), nullable=False)
+    CorporationNameBranchType = Column(String(128), server_default=text(""), nullable=False)
+    CorporationCommitteeType = Column(String(128), server_default=text(""), nullable=False)
+    CorporationLegalType = Column(String(128), server_default=text(""), nullable=False)
+    #Recipient = Column(String(128), server_default=text(""), nullable=False)
+    #Recipient = Column(String(128), server_default=text(""), nullable=False)
+    #Recipient = Column(String(128), server_default=text(""), nullable=False)
+    #Recipient = Column(String(128), server_default=text(""), nullable=False)
+
+
+    SecondCorporationName = Column(String(128), server_default=text(""), nullable=False)
+    SecondCorporationNameOrganization = Column(String(128), server_default=text(""), nullable=False)
+    SecondCorporationNameBranchIdentifier = Column(String(128), server_default=text(""), nullable=False)
+    SecondCorporationNameBranchType = Column(String(128), server_default=text(""), nullable=False)
+    SecondCorporationCommitteeType = Column(String(128), server_default=text(""), nullable=False)
+    SecondCorporationLegalType = Column(String(128), server_default=text(""), nullable=False)
+
+
+
+
+
 class TestUsAddressCleaner(db.Model):
     __tablename__ = 'test_us_address_cleaner'
 
     id = Column(Integer, primary_key=True)
+
+    address_type = Column(String(128), server_default=text(""), nullable=False)
+
+    original_address  = Column(Text, server_default=text(""), nullable=False)
+
+    Recipient = Column(String(128), server_default=text(""), nullable=False)
+
+    AddressNumberPrefix = Column(String(128), server_default=text(""), nullable=False)
     AddressNumber = Column(String(128), server_default=text(""), nullable=False)
+    AddressNumberSuffix = Column(String(128), server_default=text(""), nullable=False)
+
+    CornerOf = Column(String(128), server_default=text(""), nullable=False)
+
+
     StreetNamePreDirectional = Column(String(128), server_default=text(""), nullable=False)
 
+    StreetNamePreType = Column(String(128), server_default=text(""), nullable=False)
+
+    StreetNamePreModifier = Column(String(128), server_default=text(""), nullable=False)
+
     StreetName = Column(String(128), server_default=text(""), nullable=False)
+    StreetNamePostModifier = Column(String(128), server_default=text(""), nullable=False)
     StreetNamePostType = Column(String(128), server_default=text(""), nullable=False)
+    StreetNamePostDirectional = Column(String(128), server_default=text(""), nullable=False)
+
+
+    SubaddressType = Column(String(128), server_default=text(""), nullable=False)
+    SubaddressIdentifier = Column(String(128), server_default=text(""), nullable=False)
+
+    IntersectionSeparator = Column(String(128), server_default=text(""), nullable=False)
+
+    SecondStreetName = Column(String(128), server_default=text(""), nullable=False)
+    SecondStreetNamePostModifier = Column(String(128), server_default=text(""), nullable=False)
+    SecondStreetNamePostType = Column(String(128), server_default=text(""), nullable=False)
+    SecondStreetNamePostDirectional = Column(String(128), server_default=text(""), nullable=False)
+
+    BuildingName = Column(String(128), server_default=text(""), nullable=False)
+
+    LandmarkName = Column(String(128), server_default=text(""), nullable=False)
+
+
+    OccupancyType = Column(String(128), server_default=text(""), nullable=False)
+    OccupancyIdentifier = Column(String(128), server_default=text(""), nullable=False)
+
+    USPSBoxGroupType = Column(String(128), server_default=text(""), nullable=False)
+    USPSBoxGroupID = Column(String(128), server_default=text(""), nullable=False)
+    USPSBoxType = Column(String(128), server_default=text(""), nullable=False)
+    USPSBoxID = Column(String(128), server_default=text(""), nullable=False)
+
     PlaceName = Column(String(128), server_default=text(""), nullable=False)
     StateName = Column(String(128), server_default=text(""), nullable=False)
     ZipCode = Column(String(128), server_default=text(""), nullable=False)
 
+    CountryName = Column(String(128), server_default=text(""), nullable=False)
 
+    NotAddress = Column(String(128), server_default=text(""), nullable=False)
+
+
+
+
+"""
+
+SELECT DISTINCT(AddressNumberSuffix), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY AddressNumberSuffix ORDER BY numm DESC
+
+
+SELECT DISTINCT(StreetNamePreDirectional), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StreetNamePreDirectional ORDER BY numm DESC
+
+
+SELECT DISTINCT(StreetNamePreType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StreetNamePreType ORDER BY numm DESC
+
+
+SELECT DISTINCT(StreetNamePostModifier), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StreetNamePostModifier ORDER BY numm DESC
+
+
+
+!!!!
+SELECT DISTINCT(StreetNamePostType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StreetNamePostType ORDER BY numm DESC
+
+
+SELECT DISTINCT(SecondStreetNamePostDirectional), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SecondStreetNamePostDirectional ORDER BY numm DESC
+
+
+SELECT DISTINCT(SubaddressType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SubaddressType ORDER BY numm DESC
+
+
+SELECT DISTINCT(SubaddressIdentifier), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SubaddressIdentifier ORDER BY numm DESC
+
+
+SELECT DISTINCT(IntersectionSeparator), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY IntersectionSeparator ORDER BY numm DESC
+
+
+SELECT DISTINCT(SecondStreetName), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SecondStreetName ORDER BY numm DESC
+
+
+SELECT DISTINCT(SecondStreetNamePostType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SecondStreetNamePostType ORDER BY numm DESC
+
+
+SELECT DISTINCT(SecondStreetNamePostDirectional), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY SecondStreetNamePostDirectional ORDER BY numm DESC
+
+!!! Some weird ones
+SELECT DISTINCT(OccupancyType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY OccupancyType ORDER BY numm DESC
+
+!!! Look at details later
+SELECT DISTINCT(OccupancyIdentifier), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY OccupancyIdentifier ORDER BY numm DESC
+
+
+SELECT DISTINCT(USPSBoxType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY USPSBoxType ORDER BY numm DESC
+
+
+SELECT DISTINCT(USPSBoxID), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY USPSBoxID ORDER BY numm DESC
+
+
+!!! Look at details later
+SELECT DISTINCT(StateName), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StateName ORDER BY numm DESC
+
+
+
+
+
+
+
+SELECT DISTINCT(StreetNamePreModifier), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY StreetNamePreModifier ORDER BY numm DESC
+
+
+SELECT DISTINCT(USPSBoxGroupType), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY USPSBoxGroupType ORDER BY numm DESC
+
+
+SELECT DISTINCT(NotAddress), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY NotAddress ORDER BY numm DESC
+
+
+
+
+
+
+SELECT DISTINCT(AddressNumberPrefix), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY AddressNumberPrefix ORDER BY numm DESC
+
+
+SELECT DISTINCT(XXXXXXXXXXXXX), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY XXXXXXXXXXXXXX ORDER BY numm DESC
+
+
+SELECT DISTINCT(XXXXXXXXXXXXX), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY XXXXXXXXXXXXXX ORDER BY numm DESC
+
+
+SELECT DISTINCT(XXXXXXXXXXXXX), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY XXXXXXXXXXXXXX ORDER BY numm DESC
+
+
+
+
+
+
+
+
+# Submit bug report:
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePreType != '' 
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePreDirectional in ('MT', 'FLINT') 
+SELECT * FROM `test_us_address_cleaner` WHERE CornerOf != '' 
+
+
+
+
+
+# Show weird addresses
+SELECT * FROM `test_us_address_cleaner` WHERE StateName = '' 
+    AND original_address != '' ORDER BY `test_us_address_cleaner`.`original_address` DESC 
+
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePreDirectional in ('R', 'EN', 'O')
+
+
+
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE original_address = ''
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePreType != '' 
+
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePreType != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE SubaddressType != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE SubaddressIdentifier != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE IntersectionSeparator != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE SecondStreetName != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE BuildingName != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE LandmarkName != '' 
+
+SELECT * FROM `test_us_address_cleaner` WHERE USPSBoxGroupType != ''
+
+
+
+
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE StreetNamePostDirectional in ('OLMSTED', '202-7') 
+
+
+SELECT * FROM `test_us_address_cleaner` WHERE OccupancyType in ('UTG') 
+
+
+-- ok, just testing -- SELECT * FROM `test_us_address_cleaner` WHERE OccupancyIdentifier in ('3124') 
+
+SELECT * FROM `test_us_address_cleaner` WHERE OccupancyIdentifier LIKE '#%'
+
+
+
+# Lots of the same post office box are donating! 
+SELECT DISTINCT(USPSBoxID), COUNT(*) AS numm FROM test_us_address_cleaner GROUP BY USPSBoxID ORDER BY numm DESC
+
+
+
+"""
