@@ -40,7 +40,7 @@ class TestExtractHtmlData(unittest.TestCase):
                     'Contributor Name': 'lingua, James.A',
                     'Contributor Address': '28 The Circle.Georgetown/DE 19947, DE',
 
-                },
+                }
             ]
         )
 

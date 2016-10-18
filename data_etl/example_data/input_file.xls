@@ -1,0 +1,24 @@
+<HTML>
+    <HEAD>
+        <STYLE>
+            .HDR { background-color:bisque;font-weight:bold;border: 1px solid #666666}
+            .TEXT{ mso-number-format:\@;border: 1px solid #666666}
+        </STYLE>
+    </HEAD>
+    <BODY>
+        <TABLE border=1>
+            <TR style='font-family:arial' bgcolor='#EAF2FF'>
+                <TD><B>First Name</B></TD>
+                <TD><B>Last Name</B></TD>
+            </TR>
+            <TR>
+                <TD>Alice</TD>
+                <TD>Apple</TD>
+            </TR>
+            <TR>
+                <TD>Bob</TD>
+                <TD>Bannana</TD>
+            </TR>
+        </TABLE>
+    </BODY>
+</HTML>
