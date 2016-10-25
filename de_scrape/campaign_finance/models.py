@@ -309,6 +309,9 @@ class DePoliticalDonationCommittee(db.Model):
     __tablename__ = 'de_political_donation_committee'
 
     id = Column(Integer, primary_key=True)
+
+    candidate_id = Column(Integer, nullable=False, server_default='0', index=True)
+
     committee_name = Column(String(64), nullable=False)
     committee_slug = Column(String(32), nullable=False, server_default='')    
     committee_description = Column(Text, server_default='')
@@ -348,6 +351,37 @@ class DePoliticalDonationContributionType(db.Model):
         return "<DePoliticalDonationContributionType(type_name='%s')>" % (self.type_name)
 
 
+
+
+class DePoliticalDonationContributorAddress(db.Model):
+    __tablename__ = 'de_political_donation_contributor_address'
+    #__table_args__ = (
+    #    Index('city', 'city', 'state'),
+    #    Index('is_person', 'is_person', 'is_business')
+    #)
+
+    id = Column(Integer, primary_key=True)
+
+    address_type = Column(String(128), server_default=text(""), nullable=False)
+
+
+    addr1 = Column(String(128), nullable=False, server_default='')
+    addr2 = Column(String(128), nullable=False, server_default='')
+    #addr3 = Column(String(128), nullable=False, server_default='')
+
+
+    po_box = Column(String(16), server_default=text(""), nullable=False)
+
+
+    city = Column(String(64), nullable=False)
+    state = Column(String(32), nullable=False)
+    zipcode = Column(String(16), nullable=False, index=True)
+
+    def __repr__(self):
+        return "<DePoliticalDonationContributorAddress(full_name='%s')>" % (self.addr1)
+
+
+
 class DePoliticalDonationContributor(db.Model):
     __tablename__ = 'de_political_donation_contributor'
     #__table_args__ = (
@@ -356,24 +390,31 @@ class DePoliticalDonationContributor(db.Model):
     #)
 
     id = Column(Integer, primary_key=True)
-    full_name = Column(String(128), nullable=False, server_default='')
-    full_address = Column(String(255), nullable=False, server_default='')
+    #full_name = Column(String(128), nullable=False, server_default='')
+    #full_address = Column(String(255), nullable=False, server_default='')
+
+    address_id = Column(Integer, ForeignKey(DePoliticalDonationContributorAddress.id), nullable=False, index=True)
+    address = relationship(DePoliticalDonationContributorAddress, backref=backref('contributors', order_by=id))
+
+
     name_prefix = Column(String(64), nullable=False, server_default='')
     name_first = Column(String(64), nullable=False, server_default='')
     name_middle = Column(String(64), nullable=False, server_default='')
     name_last = Column(String(64), nullable=False, server_default='')
     name_suffix = Column(String(64), nullable=False, server_default='')
-    addr1 = Column(String(128), nullable=False, server_default='')
-    addr2 = Column(String(128), nullable=False, server_default='')
-    addr3 = Column(String(128), nullable=False, server_default='')
-    city = Column(String(64), nullable=False)
-    state = Column(String(32), nullable=False)
-    zipcode = Column(String(16), nullable=False, index=True)
+
+    name_business = Column(String(255), nullable=False, server_default='')
+
+
+
     is_person = Column(SmallInteger, nullable=False, server_default='0')
     is_business = Column(SmallInteger, nullable=False, server_default='0')
 
     def __repr__(self):
         return "<DePoliticalDonationContributor(full_name='%s')>" % (self.full_name)
+
+
+
 
 
 class DePoliticalDonationContributorType(db.Model):
@@ -442,6 +483,8 @@ class DePoliticalDonation(db.Model):
     __tablename__ = 'de_political_donation'
 
     id = Column(Integer, primary_key=True)
+
+    is_annonymous = Column(SmallInteger, nullable=False, server_default='0')
 
     #contributor_id = Column(Integer, nullable=False)
     contributor_id = Column(Integer, ForeignKey(DePoliticalDonationContributor.id), nullable=False, index=True)

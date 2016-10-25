@@ -91,3 +91,5 @@ ENV/
 
 # Current project settings
 config.py
+standardize_us_address/
+

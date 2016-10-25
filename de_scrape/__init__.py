@@ -37,6 +37,6 @@ from campaign_finance.controllers import campaign_finance_blueprint
 app.register_blueprint(campaign_finance_blueprint, url_prefix='/campaign_finance')
 
 
-from de_scrape.admin import de_scrape_admin
-app.register_blueprint(de_scrape_admin, url_prefix='/admin')
+#from de_scrape.admin import de_scrape_admin
+#app.register_blueprint(de_scrape_admin, url_prefix='/admin')
 
