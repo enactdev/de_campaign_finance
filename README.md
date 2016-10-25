@@ -2,38 +2,39 @@
 Looking at campaign finance data from the state of Delaware
 
 
-# Basic guide to git:
+## Basic guide to git:
 http://rogerdudler.github.io/git-guide/
 
 
-To use this code:
+## To use this code:
 
 copy config_example.py to config.py
 
 Edit CONTRIBUTION_CSV_DIRECTORY to point to where you will store the CSV files. For privacy reasons, this git will not host the CSV files with users campaign contribution data.
-
 
 Load the database from de_scrape.sql, and edit your config.py to point to it
 
 Load state data from states.sql
 
 
+## Downloading campaign contribution data:
 
-Download campagin contribution data from:
+### Method known to give you all the data
 
-https://cfrs.elections.delaware.gov
+- Goto https://cfrs.elections.delaware.gov
+- Click on "View Contributions / Loans"
+- Select a year, click search, and download the CSV file.
+- Store the files in a directory, recommended store format: DE_Contributions_<YEAR>.csv such as DE_Contributions_2016.csv
 
-Click on "View Contributions / Loans"
 
-Select a year, click search, and download the CSV file.
+### Quick method
 
-Store the files in a directory, recommended store format: DE_Contributions_<YEAR>.csv such as DE_Contributions_2016.csv
+- Goto https://cfrs.elections.delaware.gov
+- Click on "View Contributions / Loans"
+- Type `%` into the 'Name feild', click search, and download the 40mb CSV file.
+- Store the files in a directory, recommended store format: DE_Contributions.csv
+
+## Managing code
 
 Code is loaded from manage.py. There is a test command you can use on the command line to make sure Flask is set up correctly.
-
-
-
-
-
-
 
